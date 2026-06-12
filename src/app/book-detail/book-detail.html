@@ -1,0 +1,46 @@
+<section>
+  <a
+    routerLink="/books"
+    class="mb-6 inline-flex items-center gap-1 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+  >
+    ← Back to books
+  </a>
+
+  @if (bookResource.isLoading()) {
+    <p class="text-sm text-slate-500">Loading book…</p>
+  } @else if (bookResource.error()) {
+    <div class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+      Could not load this book.
+    </div>
+  } @else if (book(); as book) {
+    <div class="overflow-hidden rounded-lg border border-slate-200 bg-white">
+      <div class="border-b border-slate-100 px-6 py-5">
+        <h1 class="text-2xl font-bold tracking-tight text-slate-900">{{ book.title }}</h1>
+      </div>
+      <dl class="divide-y divide-slate-100">
+        <div class="flex justify-between px-6 py-4">
+          <dt class="text-sm font-medium text-slate-500">ISBN</dt>
+          <dd class="font-mono text-sm text-slate-900">{{ book.isbn }}</dd>
+        </div>
+        <div class="flex justify-between px-6 py-4">
+          <dt class="text-sm font-medium text-slate-500">Price</dt>
+          <dd class="text-sm font-semibold text-slate-900">{{ book.price | currency }}</dd>
+        </div>
+        <div class="flex justify-between px-6 py-4">
+          <dt class="text-sm font-medium text-slate-500">ID</dt>
+          <dd class="font-mono text-sm text-slate-900">{{ book.id }}</dd>
+        </div>
+      </dl>
+      <div class="border-t border-slate-100 px-6 py-4">
+        <a
+          [routerLink]="['/books', book.id, 'edit']"
+          class="inline-flex rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+        >
+          Edit book
+        </a>
+      </div>
+    </div>
+  } @else {
+    <p class="text-sm text-slate-500">Book not found.</p>
+  }
+</section>

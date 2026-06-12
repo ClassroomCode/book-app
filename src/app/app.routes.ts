@@ -7,12 +7,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./book-list/book-list').then((m) => m.BookList),
   },
-  /*
   {
     path: 'books/:id',
     loadComponent: () =>
       import('./book-detail/book-detail').then((m) => m.BookDetail),
   },
+  /*
   {
     path: 'books/:id/edit',
     loadComponent: () =>
