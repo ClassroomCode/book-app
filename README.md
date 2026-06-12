@@ -1,1 +1,1 @@
-# book-app
+# Book App (Angular 22)
