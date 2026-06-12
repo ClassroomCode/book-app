@@ -12,13 +12,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./book-detail/book-detail').then((m) => m.BookDetail),
   },
-  /*
   {
     path: 'books/:id/edit',
     loadComponent: () =>
       import('./book-edit/book-edit').then((m) => m.BookEdit),
   },
-  */
   {
     path: 'about',
     loadComponent: () => import('./about/about').then((m) => m.About),
