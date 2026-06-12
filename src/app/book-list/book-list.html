@@ -1,0 +1,49 @@
+<section>
+  <div class="mb-6 flex items-end justify-between">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight">Books</h1>
+      <p class="mt-1 text-sm text-slate-500">Browse the catalog and edit any title.</p>
+    </div>
+    <button
+      type="button"
+      (click)="booksResource.reload()"
+      class="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+    >
+      Refresh
+    </button>
+  </div>
+
+  @if (booksResource.isLoading()) {
+    <p class="text-sm text-slate-500">Loading books…</p>
+  } @else if (booksResource.error()) {
+    <div class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+      Could not load books. Is the service running at
+      <code class="font-mono">http://localhost:3000/books</code>?
+    </div>
+  } @else {
+    @let books = booksResource.value();
+    @if (books.length === 0) {
+      <p class="text-sm text-slate-500">No books found.</p>
+    } @else {
+      <ul class="divide-y divide-slate-200 overflow-hidden rounded-lg border border-slate-200 bg-white">
+        @for (book of books; track book.id) {
+          <li>
+            <a
+              [routerLink]="['/books', book.id]"
+              class="flex items-center justify-between gap-4 px-5 py-4 transition hover:bg-slate-50"
+            >
+              <div class="min-w-0">
+                <p class="truncate font-medium text-slate-900">{{ book.title }}</p>
+                <p class="mt-0.5 font-mono text-xs text-slate-500">ISBN {{ book.isbn }}</p>
+              </div>
+              <span class="shrink-0 font-semibold text-slate-900">
+                {{ book.price | currency }}
+              </span>
+            </a>
+          </li>
+        }
+      </ul>
+    }
+  }
+</section>
+
