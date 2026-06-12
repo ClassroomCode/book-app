@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "book-app2": {
+    "book-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
